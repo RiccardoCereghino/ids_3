@@ -59,18 +59,7 @@ if __name__ == '__main__':
     for number, rate in betweenness:
         print("({}) {}".format(number, players_dict[number]["nome"]))
 
-    # AAAAAAAAAAAA
-    """    
-    d_g = g.subgraph([1, 4, 21, 55])
-    pos = nx.spring_layout(d_g)
-    nx.draw_networkx(d_g, pos)
-    labels = nx.get_edge_attributes(d_g, 'weight')
-    nx.draw_networkx_edge_labels(d_g, pos=pos, edge_labels=labels)
-    plt.show()
 
-    d_passes = reduce(lambda r, x: r + x, [x[2] for x in d_g.edges.data('weight')], 0)
-    de_passes = reduce(lambda r, x: r + x, dict(d_g.in_degree(d_g.nodes, weight='weight')).values(), 0)
-    """
     d_g = g.subgraph([1, 4, 21, 55])
     d_passes = reduce(lambda r, x: r + x, [x[2] for x in d_g.edges.data('weight')], 0)
 
@@ -81,3 +70,6 @@ if __name__ == '__main__':
     a_passes = reduce(lambda r, x: r + x, [x[2] for x in a_g.edges.data('weight')], 0)
 
     print("Difesa ha passato: {}, centrocampo: {} e attacco {}", d_passes, c_passes, a_passes)
+
+    print("Pagerank, valore piu alto implica che il gioctore ha ricevuto la palla piu volte di quella che l'ha passata.")
+    print(nx.pagerank(g))
